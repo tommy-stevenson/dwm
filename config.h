@@ -1,5 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
+/* volume */
+
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -19,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6"};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -94,6 +102,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = downvol } },
+	{ 0,                       XF86XK_AudioMute, spawn, {.v = mutevol } },
+	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = upvol   } },
 };
 
 /* button definitions */
