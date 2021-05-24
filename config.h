@@ -4,9 +4,9 @@
 
 /* volume */
 
-static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *upvol[]   = { "/usr/bin/amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
+static const char *downvol[] = { "/usr/bin/amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
+static const char *mutevol[] = { "/usr/bin/amixer", "-D", "pulse", "sset", "Master", "toggle", NULL };
 
 /* appearance */
 static const unsigned int borderpx  = 5;        /* border pixel of windows */
